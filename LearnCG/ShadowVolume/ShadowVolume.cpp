@@ -8,6 +8,7 @@
 
 #include "ShadowVolume.h"
 
+
 Camera ShadowVolume::gCamera;
 Pipeline ShadowVolume::gPipeline;
 
@@ -176,6 +177,9 @@ void ShadowVolume::RunLoop()
     mWorldMat = glm::scale(glm::mat4(1), glm::vec3(10, 10, 10));
     mWorldMat = glm::translate(mWorldMat, glm::vec3(5, 0, 2));
     
+    mSphere.SetRadius(15);
+    mSphereMat = glm::translate(glm::mat4(1), glm::vec3(-30, 15, 80));
+    
     // 平行光
     mDirectLight.SetLightColor(glm::vec4(1, 1, 1, 1));
     mDirectLight.SetLightIntensity(2);
@@ -244,6 +248,17 @@ void ShadowVolume::RenderForGeom()
         GLint gWorldMat = glGetUniformLocation(mGemProg, "gWorldMat");
         GLint gViewMat = glGetUniformLocation(mGemProg, "gViewMat");
         GLint gProjMat = glGetUniformLocation(mGemProg, "gProjMat");
+        glUniformMatrix4fv(gWorldMat, 1, GL_FALSE, glm::value_ptr(mSphereMat));
+        glUniformMatrix4fv(gViewMat, 1, GL_FALSE, glm::value_ptr(gCamera.GetViewMat()));
+        glUniformMatrix4fv(gProjMat, 1, GL_FALSE, glm::value_ptr(gPipeline.GetProjMat()));
+
+        mSphere.Render();
+    }
+    
+    {
+        GLint gWorldMat = glGetUniformLocation(mGemProg, "gWorldMat");
+        GLint gViewMat = glGetUniformLocation(mGemProg, "gViewMat");
+        GLint gProjMat = glGetUniformLocation(mGemProg, "gProjMat");
         glUniformMatrix4fv(gWorldMat, 1, GL_FALSE, glm::value_ptr(glm::mat4(1)));
         glUniformMatrix4fv(gViewMat, 1, GL_FALSE, glm::value_ptr(gCamera.GetViewMat()));
         glUniformMatrix4fv(gProjMat, 1, GL_FALSE, glm::value_ptr(gPipeline.GetProjMat()));
@@ -258,15 +273,16 @@ void ShadowVolume::RenderForGeom()
 
 void ShadowVolume::RenderForStencil()
 {
-    //glEnable(GL_CULL_FACE);
-    //glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    /*glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);*/
     
     glDisable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_FALSE);
     glEnable(GL_DEPTH_CLAMP);
     glEnable(GL_POLYGON_OFFSET_FILL);
-    glPolygonOffset(0.01, 0);
+    glPolygonOffset(0.1, 0);
     
     glStencilFunc(GL_ALWAYS, 0x0, 0xFF);
     glStencilOpSeparate(GL_BACK, GL_KEEP, GL_INCR_WRAP, GL_KEEP);
@@ -288,6 +304,17 @@ void ShadowVolume::RenderForStencil()
         glUniformMatrix4fv(gProjMat, 1, GL_FALSE, glm::value_ptr(gPipeline.GetProjMat()));
         
         mModel.Render(EModelRender_TriangleAdjacency);
+    }
+    
+    {
+        GLint gWorldMat = glGetUniformLocation(mSteProg, "gWorldMat");
+        GLint gViewMat = glGetUniformLocation(mSteProg, "gViewMat");
+        GLint gProjMat = glGetUniformLocation(mSteProg, "gProjMat");
+        glUniformMatrix4fv(gWorldMat, 1, GL_FALSE, glm::value_ptr(mSphereMat));
+        glUniformMatrix4fv(gViewMat, 1, GL_FALSE, glm::value_ptr(gCamera.GetViewMat()));
+        glUniformMatrix4fv(gProjMat, 1, GL_FALSE, glm::value_ptr(gPipeline.GetProjMat()));
+        
+        mSphere.Render(ESPHERE_RenderTriangleAdjancency);
     }
     
     {
@@ -335,6 +362,9 @@ void ShadowVolume::RenderForLight()
     GLint gCameraPos = glGetUniformLocation(mLightProg, "gCameraPos");
     glUniform3fv(gCameraPos, 1, glm::value_ptr(gCamera.GetEyePos()));
     
+    GLint gIsSphere = glGetUniformLocation(mLightProg, "gIsSphere");
+    glUniform1i(gIsSphere, false);
+    
     {
         mTexture.Bind(GL_TEXTURE0);
         GLint gSampler = glGetUniformLocation(mLightProg, "gSampler");
@@ -369,7 +399,7 @@ void ShadowVolume::RenderForLight()
     {
         mTexture2.Bind(GL_TEXTURE0);
         GLint gSampler = glGetUniformLocation(mLightProg, "gSampler");
-        glUniform1i(gSampler, mTexture.GetTex());
+        glUniform1i(gSampler, mTexture2.GetTex());
         
         glm::mat4 WorldMat = glm::scale(glm::mat4(1), glm::vec3(20, 20, 20));
         WorldMat = glm::translate(WorldMat, glm::vec3(-2, 1, 0));
@@ -384,6 +414,23 @@ void ShadowVolume::RenderForLight()
         mCube.Render();
     }
     
+    {
+        glUniform1i(gIsSphere, true);
+        
+        mTexture.Bind(GL_TEXTURE0);
+        GLint gSampler = glGetUniformLocation(mLightProg, "gSampler");
+        glUniform1i(gSampler, mTexture.GetTex());
+        
+        GLint gWorldMat = glGetUniformLocation(mLightProg, "gWorldMat");
+        GLint gViewMat = glGetUniformLocation(mLightProg, "gViewMat");
+        GLint gProjMat = glGetUniformLocation(mLightProg, "gProjMat");
+        glUniformMatrix4fv(gWorldMat, 1, GL_FALSE, glm::value_ptr(mSphereMat));
+        glUniformMatrix4fv(gViewMat, 1, GL_FALSE, glm::value_ptr(gCamera.GetViewMat()));
+        glUniformMatrix4fv(gProjMat, 1, GL_FALSE, glm::value_ptr(gPipeline.GetProjMat()));
+        
+        mSphere.Render();
+    }
+    
     glUseProgram(0);
 }
 
@@ -393,6 +440,9 @@ void ShadowVolume::RenderForAmbient()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     glUseProgram(mAmbientProg);
+    
+    GLint gIsSphere = glGetUniformLocation(mAmbientProg, "gIsSphere");
+    glUniform1i(gIsSphere, false);
     
     GLint gAmbient = glGetUniformLocation(mAmbientProg, "gAmbient");
     glUniform4fv(gAmbient, 1, glm::value_ptr(mDirectLight.GetAmbientColor()));
@@ -431,7 +481,7 @@ void ShadowVolume::RenderForAmbient()
     {
         mTexture2.Bind(GL_TEXTURE0);
         GLint gSampler = glGetUniformLocation(mAmbientProg, "gSampler");
-        glUniform1i(gSampler, mTexture.GetTex());
+        glUniform1i(gSampler, mTexture2.GetTex());
         
         glm::mat4 WorldMat = glm::scale(glm::mat4(1), glm::vec3(20, 20, 20));
         WorldMat = glm::translate(WorldMat, glm::vec3(-2, 1, 0));
@@ -446,5 +496,23 @@ void ShadowVolume::RenderForAmbient()
         mCube.Render();
     }
     
+    {
+        glUniform1i(gIsSphere, true);
+        
+        mTexture.Bind(GL_TEXTURE0);
+        GLint gSampler = glGetUniformLocation(mAmbientProg, "gSampler");
+        glUniform1i(gSampler, mTexture.GetTex());
+        
+        GLint gWorldMat = glGetUniformLocation(mAmbientProg, "gWorldMat");
+        GLint gViewMat = glGetUniformLocation(mAmbientProg, "gViewMat");
+        GLint gProjMat = glGetUniformLocation(mAmbientProg, "gProjMat");
+        glUniformMatrix4fv(gWorldMat, 1, GL_FALSE, glm::value_ptr(mSphereMat));
+        glUniformMatrix4fv(gViewMat, 1, GL_FALSE, glm::value_ptr(gCamera.GetViewMat()));
+        glUniformMatrix4fv(gProjMat, 1, GL_FALSE, glm::value_ptr(gPipeline.GetProjMat()));
+        
+        mSphere.Render();
+    }
+    
     glUseProgram(0);
+    glDisable(GL_BLEND);
 }

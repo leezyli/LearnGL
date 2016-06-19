@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8202A1151D15472B00E5FB1C /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8202A1131D15472B00E5FB1C /* Sphere.cpp */; };
 		8236DE341CE6FDB700049F68 /* EffectWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8236DE301CE6FDB700049F68 /* EffectWater.cpp */; };
 		8236DE401CE700E800049F68 /* Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8236DE3C1CE700E800049F68 /* Texture2D.cpp */; };
 		8236DE411CE700E800049F68 /* UtilCG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8236DE3E1CE700E800049F68 /* UtilCG.cpp */; };
@@ -52,6 +53,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8202A1131D15472B00E5FB1C /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sphere.cpp; sourceTree = "<group>"; };
+		8202A1141D15472B00E5FB1C /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sphere.h; sourceTree = "<group>"; };
 		823128DB1CF74B2400CDC0CB /* Grass.gs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Grass.gs; sourceTree = "<group>"; };
 		8236DE301CE6FDB700049F68 /* EffectWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EffectWater.cpp; sourceTree = "<group>"; };
 		8236DE311CE6FDB700049F68 /* EffectWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EffectWater.h; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 			children = (
 				827092B21D02F72D00E70DF4 /* Cube.h */,
 				827092B11D02F72D00E70DF4 /* Cube.cpp */,
+				8202A1141D15472B00E5FB1C /* Sphere.h */,
+				8202A1131D15472B00E5FB1C /* Sphere.cpp */,
 			);
 			name = Geometry;
 			path = LearnCG/Geometry;
@@ -380,6 +385,7 @@
 				82834F111CF4A22F00CBDEFB /* WavingGrass.cpp in Sources */,
 				826C3C321CF00CE300901CA9 /* DistanceTexture.cpp in Sources */,
 				8236DE501CE7077900049F68 /* ShadowMap.cpp in Sources */,
+				8202A1151D15472B00E5FB1C /* Sphere.cpp in Sources */,
 				826CC1871CE4D8DE00B02B2D /* LearnCG.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

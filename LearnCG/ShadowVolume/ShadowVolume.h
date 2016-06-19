@@ -18,6 +18,7 @@
 #include "SVDepthTexture.h"
 #include "Texture2D.h"
 #include "Cube.h"
+#include "Sphere.h"
 
 class ShadowVolume
 {
@@ -58,11 +59,13 @@ private:
     GLuint mIBO;
     Model mModel;
     glm::mat4 mWorldMat;
+    glm::mat4 mSphereMat;
     DirectionalLight mDirectLight;
     Texture2D mTexture, mTexture2;
     SVDepthTexture mDepthTex;
     
     Cube mCube;
+    Sphere mSphere;
 };
 
 

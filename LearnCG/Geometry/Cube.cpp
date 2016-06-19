@@ -124,13 +124,6 @@ bool Cube::Init()
     Vertices[23].Normal = glm::vec3(0, -1, 0);
     Vertices[23].TexCoord = glm::vec2(0, 0);
     
-    glm::mat4 WorldMat = glm::scale(glm::mat4(1), glm::vec3(20, 20, 20));
-    WorldMat = glm::translate(WorldMat, glm::vec3(-2, 1, 0));
-    for (int i = 0;  i < 24; ++i) {
-        glm::vec4 m = WorldMat * glm::vec4(Vertices[i].Position, 1);
-        printf("%f, %f, %f\n", m.x, m.y, m.z);
-    }
-    
     GLushort Indices[36] = {
         0, 1, 2, 2, 1, 3,
         4, 5, 6, 6, 5, 7,
