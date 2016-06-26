@@ -21,6 +21,7 @@
 		8236DE591CE77FBA00049F68 /* DirectionalLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8236DE571CE77FBA00049F68 /* DirectionalLight.cpp */; };
 		8236DE5C1CE7804200049F68 /* PointLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8236DE5A1CE7804200049F68 /* PointLight.cpp */; };
 		8236DE5F1CE7812800049F68 /* SpotLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8236DE5D1CE7812800049F68 /* SpotLight.cpp */; };
+		824A98801D1FBDC40046B3EF /* PCFTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824A987E1D1FBDC40046B3EF /* PCFTexture.cpp */; };
 		8256EE5F1CCFB8FB002E6555 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8256EE5E1CCFB8FB002E6555 /* CoreFoundation.framework */; };
 		8256EE611CCFB913002E6555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8256EE601CCFB913002E6555 /* CoreGraphics.framework */; };
 		8256EE671CCFB9D6002E6555 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8256EE661CCFB9D6002E6555 /* CoreVideo.framework */; };
@@ -38,6 +39,7 @@
 		82887A0F1CDE3C7F009B6B40 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82887A0D1CDE3C7F009B6B40 /* Pipeline.cpp */; };
 		82887A121CDE3DCD009B6B40 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82887A101CDE3DCD009B6B40 /* Camera.cpp */; };
 		82A1ADCA1CCA6FF30099455A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A1ADC91CCA6FF30099455A /* OpenGL.framework */; };
+		82A24CBF1D1C30F60099B514 /* ShadowPCF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A24CBD1D1C30F60099B514 /* ShadowPCF.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -85,6 +87,11 @@
 		8236DE5B1CE7804200049F68 /* PointLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointLight.h; sourceTree = "<group>"; };
 		8236DE5D1CE7812800049F68 /* SpotLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpotLight.cpp; sourceTree = "<group>"; };
 		8236DE5E1CE7812800049F68 /* SpotLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLight.h; sourceTree = "<group>"; };
+		824A987C1D1FB7420046B3EF /* Depth.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Depth.fs; sourceTree = "<group>"; };
+		824A987D1D1FB7420046B3EF /* Depth.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Depth.vs; sourceTree = "<group>"; };
+		824A987E1D1FBDC40046B3EF /* PCFTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PCFTexture.cpp; sourceTree = "<group>"; };
+		824A987F1D1FBDC40046B3EF /* PCFTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCFTexture.h; sourceTree = "<group>"; };
+		824A98811D200A600046B3EF /* ShadowPCF.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = ShadowPCF.fs; sourceTree = "<group>"; };
 		8256EE5E1CCFB8FB002E6555 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8256EE601CCFB913002E6555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8256EE661CCFB9D6002E6555 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -126,6 +133,10 @@
 		82A091791D09C56A00AE652D /* Ambient.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.vs; sourceTree = "<group>"; };
 		82A1ADC81CCA6F5D0099455A /* LearnCG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LearnCG.h; path = LearnCG/LearnCG.h; sourceTree = "<group>"; };
 		82A1ADC91CCA6FF30099455A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		82A24CBB1D1C30E50099B514 /* Shadow.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shadow.fs; sourceTree = "<group>"; };
+		82A24CBC1D1C30E50099B514 /* Shadow.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shadow.vs; sourceTree = "<group>"; };
+		82A24CBD1D1C30F60099B514 /* ShadowPCF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShadowPCF.cpp; sourceTree = "<group>"; };
+		82A24CBE1D1C30F60099B514 /* ShadowPCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowPCF.h; sourceTree = "<group>"; };
 		82B18B331CBE994A00C97FEB /* LearnCG */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnCG; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -271,6 +282,23 @@
 			path = LearnCG/Geometry;
 			sourceTree = "<group>";
 		};
+		82A24CB81D1C2F4A0099B514 /* ShadowPCF */ = {
+			isa = PBXGroup;
+			children = (
+				824A987C1D1FB7420046B3EF /* Depth.fs */,
+				824A987D1D1FB7420046B3EF /* Depth.vs */,
+				824A98811D200A600046B3EF /* ShadowPCF.fs */,
+				82A24CBB1D1C30E50099B514 /* Shadow.fs */,
+				82A24CBC1D1C30E50099B514 /* Shadow.vs */,
+				82A24CBE1D1C30F60099B514 /* ShadowPCF.h */,
+				82A24CBD1D1C30F60099B514 /* ShadowPCF.cpp */,
+				824A987F1D1FBDC40046B3EF /* PCFTexture.h */,
+				824A987E1D1FBDC40046B3EF /* PCFTexture.cpp */,
+			);
+			name = ShadowPCF;
+			path = LearnCG/ShadowPCF;
+			sourceTree = "<group>";
+		};
 		82B18B2A1CBE994A00C97FEB = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +323,7 @@
 				8236DE4D1CE706BC00049F68 /* ShadowMap */,
 				8265C4FF1CFB2947008DB38E /* ShadowVolume */,
 				82724EE41CF35B5600EF5BB3 /* WavingGrass */,
+				82A24CB81D1C2F4A0099B514 /* ShadowPCF */,
 				8262F9BE1CD3B1F000E63C80 /* Util */,
 				8236DE481CE7016400049F68 /* main.cpp */,
 				82A1ADC81CCA6F5D0099455A /* LearnCG.h */,
@@ -380,6 +409,8 @@
 				8236DE491CE7016400049F68 /* main.cpp in Sources */,
 				827092B31D02F72D00E70DF4 /* Cube.cpp in Sources */,
 				82887A121CDE3DCD009B6B40 /* Camera.cpp in Sources */,
+				824A98801D1FBDC40046B3EF /* PCFTexture.cpp in Sources */,
+				82A24CBF1D1C30F60099B514 /* ShadowPCF.cpp in Sources */,
 				8236DE5C1CE7804200049F68 /* PointLight.cpp in Sources */,
 				82659BEF1CECB6AD00101D6F /* SMDepthTexture.cpp in Sources */,
 				82834F111CF4A22F00CBDEFB /* WavingGrass.cpp in Sources */,
