@@ -136,7 +136,6 @@ bool Model::LoadFromScene(const aiScene *const pScene)
         return false;
    
     mMeshs.resize(pScene->mNumMeshes);
-    mMeshs.resize(pScene->mNumMaterials);
     for (uint32_t i = 0; i < pScene->mNumMeshes; ++i) {
         const aiMesh* const pMesh = pScene->mMeshes[i];
         if ( !LoadFromMesh(i, pMesh) )

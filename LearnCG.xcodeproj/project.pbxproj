@@ -28,6 +28,7 @@
 		8256EE691CCFB9E0002E6555 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8256EE681CCFB9E0002E6555 /* IOKit.framework */; };
 		8256EE6D1CCFBA5A002E6555 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8256EE6C1CCFBA5A002E6555 /* Cocoa.framework */; };
 		8256EE731CCFBBFC002E6555 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8256EE721CCFBBFC002E6555 /* Carbon.framework */; };
+		825DBD7B1D27EFB200D4C54D /* SSAO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 825DBD791D27EFB200D4C54D /* SSAO.cpp */; };
 		82659BEF1CECB6AD00101D6F /* SMDepthTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82659BED1CECB6AD00101D6F /* SMDepthTexture.cpp */; };
 		8265C5021CFB2993008DB38E /* ShadowVolume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8265C5001CFB2993008DB38E /* ShadowVolume.cpp */; };
 		826C3C321CF00CE300901CA9 /* DistanceTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 826C3C301CF00CE300901CA9 /* DistanceTexture.cpp */; };
@@ -38,6 +39,8 @@
 		82834F111CF4A22F00CBDEFB /* WavingGrass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82834F0F1CF4A22F00CBDEFB /* WavingGrass.cpp */; };
 		82887A0F1CDE3C7F009B6B40 /* Pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82887A0D1CDE3C7F009B6B40 /* Pipeline.cpp */; };
 		82887A121CDE3DCD009B6B40 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82887A101CDE3DCD009B6B40 /* Camera.cpp */; };
+		8294D2801D28DF67002F048A /* AOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8294D27E1D28DF67002F048A /* AOTexture.cpp */; };
+		8294D2831D29018F002F048A /* AODepth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8294D2811D29018F002F048A /* AODepth.cpp */; };
 		82A1ADCA1CCA6FF30099455A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A1ADC91CCA6FF30099455A /* OpenGL.framework */; };
 		82A24CBF1D1C30F60099B514 /* ShadowPCF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82A24CBD1D1C30F60099B514 /* ShadowPCF.cpp */; };
 /* End PBXBuildFile section */
@@ -98,6 +101,10 @@
 		8256EE681CCFB9E0002E6555 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		8256EE6C1CCFBA5A002E6555 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8256EE721CCFBBFC002E6555 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		825DBD791D27EFB200D4C54D /* SSAO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SSAO.cpp; sourceTree = "<group>"; };
+		825DBD7A1D27EFB200D4C54D /* SSAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAO.h; sourceTree = "<group>"; };
+		825DBD7C1D27F51700D4C54D /* SSAO.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SSAO.fs; sourceTree = "<group>"; };
+		825DBD7D1D27F51700D4C54D /* SSAO.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = SSAO.vs; sourceTree = "<group>"; };
 		82659BED1CECB6AD00101D6F /* SMDepthTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SMDepthTexture.cpp; sourceTree = "<group>"; };
 		82659BEE1CECB6AD00101D6F /* SMDepthTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDepthTexture.h; sourceTree = "<group>"; };
 		8265C5001CFB2993008DB38E /* ShadowVolume.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShadowVolume.cpp; sourceTree = "<group>"; };
@@ -129,6 +136,14 @@
 		82887A0E1CDE3C7F009B6B40 /* Pipeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pipeline.h; sourceTree = "<group>"; };
 		82887A101CDE3DCD009B6B40 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		82887A111CDE3DCD009B6B40 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		8294D27C1D28DF0B002F048A /* Depth.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Depth.fs; sourceTree = "<group>"; };
+		8294D27D1D28DF0B002F048A /* Depth.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Depth.vs; sourceTree = "<group>"; };
+		8294D27E1D28DF67002F048A /* AOTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AOTexture.cpp; sourceTree = "<group>"; };
+		8294D27F1D28DF67002F048A /* AOTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AOTexture.h; sourceTree = "<group>"; };
+		8294D2811D29018F002F048A /* AODepth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AODepth.cpp; sourceTree = "<group>"; };
+		8294D2821D29018F002F048A /* AODepth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AODepth.h; sourceTree = "<group>"; };
+		8294D2841D290395002F048A /* Light.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Light.fs; sourceTree = "<group>"; };
+		8294D2851D290395002F048A /* Light.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Light.vs; sourceTree = "<group>"; };
 		82A091781D09C56A00AE652D /* Ambient.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.fs; sourceTree = "<group>"; };
 		82A091791D09C56A00AE652D /* Ambient.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Ambient.vs; sourceTree = "<group>"; };
 		82A1ADC81CCA6F5D0099455A /* LearnCG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LearnCG.h; path = LearnCG/LearnCG.h; sourceTree = "<group>"; };
@@ -324,6 +339,7 @@
 				8265C4FF1CFB2947008DB38E /* ShadowVolume */,
 				82724EE41CF35B5600EF5BB3 /* WavingGrass */,
 				82A24CB81D1C2F4A0099B514 /* ShadowPCF */,
+				82B391391D22D54F00672C5B /* SSAO */,
 				8262F9BE1CD3B1F000E63C80 /* Util */,
 				8236DE481CE7016400049F68 /* main.cpp */,
 				82A1ADC81CCA6F5D0099455A /* LearnCG.h */,
@@ -338,6 +354,26 @@
 				82B18B331CBE994A00C97FEB /* LearnCG */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		82B391391D22D54F00672C5B /* SSAO */ = {
+			isa = PBXGroup;
+			children = (
+				8294D2841D290395002F048A /* Light.fs */,
+				8294D2851D290395002F048A /* Light.vs */,
+				8294D27C1D28DF0B002F048A /* Depth.fs */,
+				8294D27D1D28DF0B002F048A /* Depth.vs */,
+				825DBD7C1D27F51700D4C54D /* SSAO.fs */,
+				825DBD7D1D27F51700D4C54D /* SSAO.vs */,
+				825DBD7A1D27EFB200D4C54D /* SSAO.h */,
+				825DBD791D27EFB200D4C54D /* SSAO.cpp */,
+				8294D27F1D28DF67002F048A /* AOTexture.h */,
+				8294D27E1D28DF67002F048A /* AOTexture.cpp */,
+				8294D2821D29018F002F048A /* AODepth.h */,
+				8294D2811D29018F002F048A /* AODepth.cpp */,
+			);
+			name = SSAO;
+			path = LearnCG/SSAO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8294D2831D29018F002F048A /* AODepth.cpp in Sources */,
 				8265C5021CFB2993008DB38E /* ShadowVolume.cpp in Sources */,
 				82887A0F1CDE3C7F009B6B40 /* Pipeline.cpp in Sources */,
 				8236DE341CE6FDB700049F68 /* EffectWater.cpp in Sources */,
@@ -403,6 +440,7 @@
 				8236DE5F1CE7812800049F68 /* SpotLight.cpp in Sources */,
 				827466591D01C5B8004B8553 /* SVDepthTexture.cpp in Sources */,
 				8236DE4C1CE7069B00049F68 /* Model.cpp in Sources */,
+				8294D2801D28DF67002F048A /* AOTexture.cpp in Sources */,
 				8236DE401CE700E800049F68 /* Texture2D.cpp in Sources */,
 				8236DE591CE77FBA00049F68 /* DirectionalLight.cpp in Sources */,
 				8236DE561CE77E4C00049F68 /* LightBase.cpp in Sources */,
@@ -411,6 +449,7 @@
 				82887A121CDE3DCD009B6B40 /* Camera.cpp in Sources */,
 				824A98801D1FBDC40046B3EF /* PCFTexture.cpp in Sources */,
 				82A24CBF1D1C30F60099B514 /* ShadowPCF.cpp in Sources */,
+				825DBD7B1D27EFB200D4C54D /* SSAO.cpp in Sources */,
 				8236DE5C1CE7804200049F68 /* PointLight.cpp in Sources */,
 				82659BEF1CECB6AD00101D6F /* SMDepthTexture.cpp in Sources */,
 				82834F111CF4A22F00CBDEFB /* WavingGrass.cpp in Sources */,

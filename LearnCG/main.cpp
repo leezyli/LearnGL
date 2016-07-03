@@ -12,12 +12,13 @@
 #include "ShadowVolume.h"
 #include "WavingGrass.h"
 #include "ShadowPCF.h"
+#include "SSAO.h"
 
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    ShadowPCF demo;
+    SSAO demo;
     if ( demo.Init() ) {
         demo.RunLoop();
     }
