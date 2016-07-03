@@ -232,13 +232,15 @@ void SSAO::RenderLightPass()
     
     glUseProgram(mLightProg);
     
+    Camera lightCamera;
+    lightCamera.LookAt(mLight.GetLightPos(), mLight.GetCastPos(), gCamera.GetUp());
+    
+    glm::mat4 lightProjtMat = gPipeline.GetProjMat() * lightCamera.GetViewMat();
+    GLint gLightProjMat = glGetUniformLocation(mLightProg, "gLightProjMat");
+    glUniformMatrix4fv(gLightProjMat, 1, GL_FALSE, glm::value_ptr(lightProjtMat));
+    
     GLint gSampler = glGetUniformLocation(mLightProg, "gSampler");
     glUniform1i(gSampler, mAOTex.GetTex());
-    
-    GLint gScreenWidth = glGetUniformLocation(mLightProg, "gScreenWidth");
-    GLint gScreenHeight = glGetUniformLocation(mLightProg, "gScreenHeight");
-    glUniform1i(gScreenWidth, mWidth);
-    glUniform1i(gScreenHeight, mHeight);
     
     GLint gEnableSSAO = glGetUniformLocation(mLightProg, "gEnableSSAO");
     glUniform1i(gEnableSSAO, mEnableSSAO);

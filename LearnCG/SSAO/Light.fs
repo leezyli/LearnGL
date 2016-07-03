@@ -43,13 +43,14 @@ uniform vec3 gCameraPos;
 uniform DirectionLight gLight;
 uniform bool gEnableSSAO;
 
-uniform int gScreenWidth;
-uniform int gScreenHeight;
-vec2 GetTexCoord()
+uniform mat4 gLightProjMat;
+vec2 GetTexCoord(vec3 WorldPos)
 {
-    float x = gl_FragCoord.x / gScreenWidth;
-    float y = gl_FragCoord.y / gScreenHeight;
-    return vec2(x, y);
+    vec4 Pos = gLightProjMat * vec4(WorldPos, 1);
+    Pos.xyz /= Pos.w;
+    Pos.x = Pos.x * 0.5 + 0.5;
+    Pos.y = Pos.y * 0.5 + 0.5;
+    return Pos.xy;
 }
 
 in vec3 WorldPos0;
@@ -64,7 +65,7 @@ void main()
     }
     else
     {
-        float AO = texture(gSampler, GetTexCoord()).r;
+        float AO = texture(gSampler, GetTexCoord(WorldPos0)).r;
         FragColor = Color * AO;
     }
 }
