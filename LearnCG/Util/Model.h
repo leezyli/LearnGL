@@ -16,6 +16,7 @@
 #include "assimp/assimp/scene.h"
 #include "Texture2D.h"
 #include <map>
+#include "BoundingVolume.h"
 
 enum EMODEL_FLAGS
 {
@@ -39,6 +40,8 @@ public:
     bool Load(std::string const& Path, uint32_t eFlag = EModelFlag_Normal);
     void Render(EMODEL_RENDER eRender = EModelRender_Normal);
     bool MakeShadowVolume(glm::vec3 const& aLightDir);
+    bool MakeBoundingBox(BoundingBox& box);
+    bool MakeBoundingSphere(BoundingSphere& sphere);
 protected:
     bool LoadFromScene(aiScene const* const pScene);
     bool LoadFromSceneTS(aiScene const* const pScene);
@@ -102,6 +105,7 @@ private:
     std::vector<MeshEntry> mMeshs;
     std::vector<glm::vec3> mTSVers;
     std::vector<GLushort> mTSInds;
+    std::vector<glm::vec3> mModelVecs;
     std::vector<Texture2D*> mTextures;
 };
 

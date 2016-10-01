@@ -94,7 +94,7 @@ uint32_t UtilCG::Shader::LoadShaders(const char *const vs, const char *const fs,
         return INVALID_HANDLE;
     
     uint32_t hGShader = 0;
-    if ( gs != nullptr )
+    if ( gs != NULL )
     {
         hGShader = UtilCG::Internal::LoadSource(gs, GL_GEOMETRY_SHADER);
         hGShader = UtilCG::Internal::CompileSource(hGShader);

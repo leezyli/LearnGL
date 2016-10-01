@@ -13,12 +13,14 @@
 #include "WavingGrass.h"
 #include "ShadowPCF.h"
 #include "SSAO.h"
+#include "PerspectiveShadow.h"
+#include "BoundingVolumeConstruction.h"
 
 
 int main(int argc, const char * argv[]) {
     // insert code here...
     
-    SSAO demo;
+    BoundingVolumeConstruction demo;
     if ( demo.Init() ) {
         demo.RunLoop();
     }

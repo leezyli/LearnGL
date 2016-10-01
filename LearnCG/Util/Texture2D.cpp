@@ -44,6 +44,20 @@ bool Texture2D::Load(std::string const& aPath)
     return false;
 }
 
+void Texture2D::SetTextureWrap(GLenum eTextureWrap)
+{
+    if ( !mTexID )
+        return;
+    
+    GLint nOldTexID = 0;
+    glGetIntegerv(GL_TEXTURE_BINDING_2D, &nOldTexID);
+    
+    glBindTexture(GL_TEXTURE_2D, mTexID);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, eTextureWrap);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, eTextureWrap);
+    glBindTexture(GL_TEXTURE_2D, nOldTexID);
+}
+
 GLuint Texture2D::Bind(GLenum eTexture2D)
 {
     GLuint oldTexID = 0;

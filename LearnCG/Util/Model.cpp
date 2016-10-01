@@ -8,6 +8,7 @@
 
 #include "Model.h"
 #include "assimp/assimp/postprocess.h"
+#include "Math.h"
 
 
 
@@ -215,6 +216,7 @@ bool Model::LoadFromMesh(int index, const aiMesh *const pMesh)
                  glm::vec3(Normal.x, Normal.y, Normal.z),
                  glm::vec2(TexCoord.x, TexCoord.y));
         Vertices.push_back(v);
+        mModelVecs.push_back(v.mPosition);
     }
     
     for (uint32_t i = 0; i < pMesh->mNumFaces; ++i) {
@@ -237,6 +239,7 @@ bool Model::LoadFromMeshTS_Step0(int index, int verBais, const aiMesh *const pMe
     for (uint32_t i = 0; i < pMesh->mNumVertices; ++i) {
         const aiVector3D& Position = pMesh->mVertices[i];
         mTSVers.push_back(glm::vec3(Position.x, Position.y, Position.z));
+        mModelVecs.push_back(glm::vec3(Position.x, Position.y, Position.z));
     }
     
     for (uint32_t i = 0; i < pMesh->mNumFaces; ++i) {
@@ -331,5 +334,53 @@ bool Model::LoadFromMaterials(aiScene const* const pScene, std::string const& Pa
             }
         }
     }
+    return true;
+}
+
+bool Model::MakeBoundingBox(BoundingBox &box)
+{
+    std::vector<glm::vec3> v;
+    v.push_back(glm::vec3(-1, -2, 1));
+    v.push_back(glm::vec3(1, 0 , 2));
+    v.push_back(glm::vec3(2, -1, 3));
+    v.push_back(glm::vec3(2, -1, 2));
+    
+    Eigen::Vector3f R, S, T;
+    Util::Math::CalcAxisVector(mModelVecs, R, S, T);
+    
+    /* 计算包围盒的平面法向量
+      <R, -min{dot(Pi, R)}>, <-R, max{dot(Pi, R)}>
+      <S, -min{dot(Pi, S)}>, <-S, max{dot(Pi, S)}>
+      <T, -min{dot(Pi, T)}>, <-T, max{dot(Pi, T)}>
+    */
+    float min_R = MAXFLOAT, max_R = -(MAXFLOAT-1);
+    float min_S = MAXFLOAT, max_S = -(MAXFLOAT-1);
+    float min_T = MAXFLOAT, max_T = -(MAXFLOAT-1);
+    
+    size_t n = mModelVecs.size();
+    for (size_t i = 0; i < n; ++i) {
+        Eigen::Vector3f v = Util::Internal::ToEigenVector3f(mModelVecs[i]);
+        float a = v.dot(R);
+        float b = v.dot(S);
+        float c = v.dot(T);
+        min_R = std::min(min_R, a); max_R = std::max(max_R, a);
+        min_S = std::min(min_S, b); max_S = std::max(max_S, b);
+        min_T = std::min(min_T, c); max_T = std::max(max_T, c);
+    }
+    
+    box.near  = glm::vec4(Util::Internal::ToVector3f(R), -min_R);
+    box.far   = glm::vec4(Util::Internal::ToVector3f(-R), max_R);
+    
+    box.left  = glm::vec4(Util::Internal::ToVector3f(S), -min_S);
+    box.right = glm::vec4(Util::Internal::ToVector3f(-S), max_S);
+    
+    box.top    = glm::vec4(Util::Internal::ToVector3f(T), -min_T);
+    box.bottom = glm::vec4(Util::Internal::ToVector3f(-T), max_T);
+
+    return true;
+}
+
+bool Model::MakeBoundingSphere(BoundingSphere &sphere)
+{
     return true;
 }

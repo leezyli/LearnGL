@@ -20,7 +20,7 @@ namespace UtilCG
 {
     namespace Shader
     {
-        uint32_t LoadShaders(const char* const vs, const char* const fs, const char* const gs = nullptr);
+        uint32_t LoadShaders(const char* const vs, const char* const fs, const char* const gs = NULL);
     }
     
     namespace Texture

@@ -21,6 +21,7 @@ public:
     ~Texture2D();
     
     bool Load(std::string const& aPath);
+    void SetTextureWrap(GLenum eTextureWrap);
     GLuint Bind(GLenum eTexture2D); // e.g. GL_TEXTURE0
     GLuint GetTex() const;
 protected:
